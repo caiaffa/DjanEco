@@ -10,6 +10,8 @@ from core import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^produtos/', include('product.urls', namespace='product')),
+    url(r'^compras/', include('checkout.urls', namespace='checkout')),
     url(r'^admin/', admin.site.urls),
 ]
 
