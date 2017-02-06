@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^produtos/', include('product.urls', namespace='product')),
     url(r'^compras/', include('checkout.urls', namespace='checkout')),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', admin.site.urls),
 ]
 
