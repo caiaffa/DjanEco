@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # libs
     'widget_tweaks',
+    'easy_thumbnails',
     # apps
     'product',
     'accounts',
@@ -73,6 +74,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # apps
                 'product.context_processors.categories',
+                'product.context_processors.products',
             ],
         },
     },
@@ -138,4 +140,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+# Thumbnails
+THUMBNAIL_ALIASES = {
+    '': {
+        'product_image': {'size': (350, 250), 'crop': True},
+    },
+}
+
+THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
+

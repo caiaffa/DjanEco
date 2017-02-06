@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,54 +38,47 @@
   <body>
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-collapse-custom" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-nav-custom">
+            <li class=""><a href="/">Home <span class="sr-only">(current)</span></a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorias <span class="caret"></span></a>
               <ul class="dropdown-menu">
-              	{% for category in categories %}
-					<li><a href="{{ category.get_absolute_url }}">{{ category }}</a></li>
-				{% endfor %}
+                {% for category in categories %}
+                  <li><a href="{{ category.get_absolute_url }}">{{ category }}</a></li>
+                {% endfor %}
               </ul>
             </li>
           </ul>
-          <!--
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+          <ul class="nav navbar-nav navbar-nav-custom navbar-right">
+            <li><a href="#">Acessar</a></li>
           </ul>
-      		-->
-        </div><!--/.nav-collapse -->
-      </div>
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" class="form-control search-home input-lg" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default search-home-btn"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="container">
-
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-        </p>
-      </div>
-
+    <div class="container container-main">
+      {% block container %}
+      {% endblock %}
     </div> <!-- /container -->
 
 
