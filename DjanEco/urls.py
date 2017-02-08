@@ -8,7 +8,7 @@ from django.contrib.auth.views import login, logout
 from core import views
 
 
-urlpatterns = [
+urlpatterns = [	
     url(r'^$', views.index, name='index'),
     url(r'^produtos/', include('product.urls', namespace='product')),
     url(r'^compras/', include('checkout.urls', namespace='checkout')),

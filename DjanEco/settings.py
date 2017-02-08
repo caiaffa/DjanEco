@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+SITE_ID = 1
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    # apps
+    'product',
+    'accounts',
+    'core',
+    'checkout',
     # libs
     'widget_tweaks',
     'easy_thumbnails',
@@ -45,14 +52,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
-    # apps
-    'product',
-    'accounts',
-    'core',
-    'checkout'
+    
 ]
 
-SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -129,7 +131,13 @@ AUTHENTICATION_BACKENDS = (
     'accounts.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': ['email', 'publish_actions'],
+        'METHOD': 'js_sdk'  # instead of 'oauth2'
+  }
+}
+ACCOUNT_LOGOUT_ON_GET = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
