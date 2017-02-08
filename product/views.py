@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.db import models
 from django.views.decorators.cache import cache_page
-
+from watson import search as watson
 
 from .models import Product, Category
 
@@ -17,9 +17,9 @@ class ProductList(generic.ListView):
 
     def get_queryset(self):
         queryset = Product.objects.all()
-        #q = self.request.GET.get('q', '')
-        #if q:
-        #    queryset = watson.filter(queryset, q)
+        search = self.request.GET.get('search', '')
+        if search:
+            queryset = watson.filter(queryset, search)
         return queryset
 
 
@@ -33,11 +33,11 @@ class CategoryList(generic.ListView):
     paginate_by = 3
 
     def get_queryset(self):
-        return Product.objects.filter(category__slug=self.kwargs['slug'])
+        return Product.objects.filter(category__slug=self.request.GET.get('q', ''))
 
     def get_context_data(self, **kwargs):
         context = super(CategoryList, self).get_context_data(**kwargs)
-        context['current_category'] = get_object_or_404(Category, slug=self.kwargs['slug'])
+        context['current_category'] = get_object_or_404(Category, slug=self.request.GET.get('q', ''))
         return context
 
 

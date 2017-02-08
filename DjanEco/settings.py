@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'checkout',
     # libs
     'widget_tweaks',
+    'watson',
     'easy_thumbnails',
     'allauth',
     'allauth.account',
