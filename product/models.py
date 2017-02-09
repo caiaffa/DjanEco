@@ -48,3 +48,6 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product:product', kwargs={'slug': self.slug})
+
+    def get_price(self):
+        return "R$:{}".format(self.price)

@@ -44,7 +44,7 @@ class CategoryList(generic.ListView):
 category = CategoryList.as_view()
 
 
-@cache_page(60 * 10)
+
 def product(request, slug):
     product = Product.objects.get(slug=slug)
     context = {
