@@ -43,3 +43,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return str(self).split(" ")[0]
+
+    def get_image(self):
+        facebook = self.socialaccount_set.all()
+        if facebook:
+            return facebook[0].get_avatar_url()
+        else:
+            return 'http://placehold.it/60x60'       
+        
