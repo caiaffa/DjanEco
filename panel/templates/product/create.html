@@ -1,0 +1,18 @@
+{% extends "panel.html" %}
+
+{% block container %}
+	<form action="" method="post" enctype="multipart/form-data">
+		{{ form.errors }}
+		{% csrf_token %}
+		{% for field in form %}
+		    <div class="fieldWrapper">
+		        {{ field.label_tag }} {{ field }}
+		        {{ field.errors }}
+		        {% if field.help_text %}
+		        <p class="help">{{ field.help_text|safe }}</p>
+		        {% endif %}
+		    </div>
+		{% endfor %}
+		<input type="submit" >
+	</form>
+{% endblock %}

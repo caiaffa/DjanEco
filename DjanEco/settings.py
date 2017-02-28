@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts',
     'core',
     'checkout',
+    'panel',
     # libs
     'widget_tweaks',
     'watson',

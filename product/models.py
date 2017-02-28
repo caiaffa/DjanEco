@@ -2,7 +2,7 @@
 
 from django.db import models
 from django.core.urlresolvers import reverse
-
+from django.template.defaultfilters import slugify
 
 class Category(models.Model):
 
@@ -27,7 +27,7 @@ class Category(models.Model):
 class Product(models.Model):
 
     name = models.CharField('Nome', max_length=100)
-    slug = models.SlugField('Identificador', max_length=100)
+    slug = models.SlugField('Identificador', max_length=100, blank=True, null=True)
     category = models.ForeignKey('product.Category', verbose_name='Categoria')
     description = models.TextField('Descrição', blank=True)
     price = models.DecimalField('Preço', decimal_places=2, max_digits=8)
@@ -51,3 +51,8 @@ class Product(models.Model):
 
     def get_price(self):
         return "R$:{}".format(self.price)
+
+    def save(self):
+        super(Product, self).save()
+        self.slug = '%i-%s' % (self.id, slugify(self.name))
+        super(Product, self).save()
