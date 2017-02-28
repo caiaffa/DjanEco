@@ -1,0 +1,14 @@
+{% extends "panel.html" %}
+
+
+
+{% block container %}
+
+    {% for product in products %}
+		<h3>{{ product }}</h3>
+		{{ product.description|linebreaks }}
+		<p><a href="{{ product.get_absolute_url }}" class="btn btn-success" role="button">Remove</a> <a href="{% url 'checkout:create_cartitem' product.slug %}" class="btn btn-default" role="button">Edit</a></p>
+    {% endfor %}
+
+
+{% endblock %}
