@@ -2,7 +2,6 @@
 
 from .models import CartItem
 
-
 def cart_item_middleware(get_response):
     def middleware(request):
         session_key = request.session.session_key
